@@ -4,14 +4,19 @@
     Author     : andre
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true" contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+    <title>Error 404 - No Encontrado</title>
+    <link rel="stylesheet" href="../css/empleado.css">
+</head>
+<body>
+<div class="container">
+    <h1>Error 404</h1>
+    <p>La página solicitada no existe.</p>
+    <a href="../index.jsp">Ir al Inicio</a>
+</div>
+</body>
 </html>
+

@@ -4,14 +4,20 @@
     Author     : andre
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/empleado.css">
+</head>
+<body>
+<div class="container">
+    <h2>Panel de Control</h2>
+    <p>Pedidos del día: ${pedidosHoy}</p>
+    <p>Total ventas hoy: $${ventasHoy}</p>
+    <p>Productos con bajo stock: ${bajoStock}</p>
+</div>
+</body>
 </html>
+
