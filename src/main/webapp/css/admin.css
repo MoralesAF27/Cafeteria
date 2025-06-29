@@ -7,3 +7,58 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : andre
 */
 
+/* Estilos específicos para el panel de administración */
+
+/* Dashboard */
+.quick-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Product Grid */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.producto-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.producto-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.producto-card h3 {
+    margin: 10px 0 5px;
+}
+
+.producto-card .precio {
+    font-weight: bold;
+    color: #e74c3c;
+    display: block;
+    margin: 10px 0;
+}
+
+/* Forms */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

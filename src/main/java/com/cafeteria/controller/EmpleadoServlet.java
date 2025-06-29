@@ -8,6 +8,27 @@ package com.cafeteria.controller;
  *
  * @author andre
  */
-public class EmpleadoServlet {
+import com.cafeteria.service.PedidoService;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/empleado/dashboard")
+public class EmpleadoServlet extends HttpServlet {
+    private final PedidoService pedidoService = new PedidoService();
     
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Obtener pedidos pendientes y en preparación
+        List<Pedido> pedidosPendientes = pedidoService.obtenerTodosPedidos().stream()
+                .filter(p -> p.getEstadoId() <= 2) // Estados 1 (Pendiente) y 2 (En preparación)
+                .toList();
+        
+        request.setAttribute("pedidosPendientes", pedidosPendientes);
+        request.getRequestDispatcher("/WEB-INF/views/empleado/dashboard.jsp").forward(request, response);
+    }
 }

@@ -1,17 +1,16 @@
 <%-- 
     Document   : navigation
-    Created on : 29/06/2025, 9:25:57 a. m.
+    Created on : 29/06/2025, 9:25:57?a.?m.
     Author     : andre
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<nav>
+    <ul>
+        <li><a href="${pageContext.request.contextPath}/admin/dashboard">Inicio</a></li>
+        <li><a href="${pageContext.request.contextPath}/producto">Productos</a></li>
+        <li><a href="${pageContext.request.contextPath}/pedido">Pedidos</a></li>
+        <li><a href="${pageContext.request.contextPath}/inventario">Inventario</a></li>
+        <li><a href="${pageContext.request.contextPath}/usuario">Usuarios</a></li>
+        <li><a href="${pageContext.request.contextPath}/reporte">Reportes</a></li>
+    </ul>
+</nav>
