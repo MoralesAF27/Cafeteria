@@ -11,14 +11,14 @@ package com.cafeteria.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
-    private static final Logger logger = LogManager.getLogger(DatabaseConnection.class);
+    private static final Logger logger = Logger.getLogger(DatabaseConnection.class.getName());
     private static final String URL = "jdbc:postgresql://localhost:5432/cafeteria_management";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "Timo1027$";
+    private static final String PASSWORD = "postgres";
     
     public static Connection getConnection() {
         Connection connection = null;
@@ -27,7 +27,7 @@ public class DatabaseConnection {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             logger.info("Conexión establecida con la base de datos");
         } catch (ClassNotFoundException | SQLException e) {
-            logger.error("Error al conectar con la base de datos", e);
+            logger.log(Level.SEVERE, "Error al conectar con la base de datos", e);
         }
         return connection;
     }
@@ -38,7 +38,7 @@ public class DatabaseConnection {
                 connection.close();
                 logger.info("Conexión cerrada");
             } catch (SQLException e) {
-                logger.error("Error al cerrar la conexión", e);
+                logger.log(Level.SEVERE, "Error al cerrar la conexión", e);
             }
         }
     }
