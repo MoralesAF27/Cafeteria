@@ -13,11 +13,11 @@ import com.cafeteria.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UsuarioDAO {
-    private static final Logger logger = LogManager.getLogger(UsuarioDAO.class);
+    private static final Logger logger = Logger.getLogger(UsuarioDAO.class.getName());
     
     private static final String INSERT_SQL = "INSERT INTO usuarios(rol_id, nombre, email, password, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_BY_ID_SQL = "SELECT * FROM usuarios WHERE usuario_id = ?";
@@ -39,7 +39,7 @@ public class UsuarioDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al insertar usuario", e);
+            logger.log(Level.SEVERE, "Error al insertar usuario", e);
             return false;
         }
     }
@@ -56,7 +56,7 @@ public class UsuarioDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar usuario por ID", e);
+            logger.log(Level.SEVERE, "Error al buscar usuario por ID", e);
         }
         return usuario;
     }
@@ -71,7 +71,7 @@ public class UsuarioDAO {
                 usuarios.add(mapResultSetToUsuario(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener todos los usuarios", e);
+            logger.log(Level.SEVERE, "Error al obtener todos los usuarios", e);
         }
         return usuarios;
     }
@@ -91,7 +91,7 @@ public class UsuarioDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al actualizar usuario", e);
+            logger.log(Level.SEVERE, "Error al actualizar usuario", e);
             return false;
         }
     }
@@ -103,7 +103,7 @@ public class UsuarioDAO {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al eliminar usuario", e);
+            logger.log(Level.SEVERE, "Error al eliminar usuario", e);
             return false;
         }
     }
@@ -120,7 +120,7 @@ public class UsuarioDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar usuario por email", e);
+            logger.log(Level.SEVERE, "Error al buscar usuario por email", e);
         }
         return usuario;
     }

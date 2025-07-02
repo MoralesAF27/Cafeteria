@@ -13,11 +13,11 @@ import com.cafeteria.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PedidoDAO {
-    private static final Logger logger = LogManager.getLogger(PedidoDAO.class);
+    private static final Logger logger = Logger.getLogger(PedidoDAO.class.getName());
     
     private static final String INSERT_SQL = "INSERT INTO pedidos(usuario_id, estado_id, total, notas, direccion_entrega, metodo_pago) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_BY_ID_SQL = "SELECT * FROM pedidos WHERE pedido_id = ?";
@@ -52,7 +52,7 @@ public class PedidoDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al insertar pedido", e);
+            logger.log(Level.SEVERE, "Error al insertar pedido", e);
             return -1;
         }
     }
@@ -69,7 +69,7 @@ public class PedidoDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar pedido por ID", e);
+            logger.log(Level.SEVERE, "Error al buscar pedido por ID", e);
         }
         return pedido;
     }
@@ -84,7 +84,7 @@ public class PedidoDAO {
                 pedidos.add(mapResultSetToPedido(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener todos los pedidos", e);
+            logger.log(Level.SEVERE, "Error al obtener todos los pedidos", e);
         }
         return pedidos;
     }
@@ -101,7 +101,7 @@ public class PedidoDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al actualizar pedido", e);
+            logger.log(Level.SEVERE, "Error al actualizar pedido", e);
             return false;
         }
     }
@@ -113,7 +113,7 @@ public class PedidoDAO {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al eliminar pedido", e);
+            logger.log(Level.SEVERE, "Error al eliminar pedido", e);
             return false;
         }
     }
@@ -130,7 +130,7 @@ public class PedidoDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar pedidos por usuario", e);
+            logger.log(Level.SEVERE, "Error al buscar pedidos por usuario", e);
         }
         return pedidos;
     }
@@ -144,7 +144,7 @@ public class PedidoDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al actualizar estado del pedido", e);
+            logger.log(Level.SEVERE, "Error al actualizar estado del pedido", e);
             return false;
         }
     }

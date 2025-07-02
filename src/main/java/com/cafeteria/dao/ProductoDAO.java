@@ -13,11 +13,11 @@ import com.cafeteria.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductoDAO {
-    private static final Logger logger = LogManager.getLogger(ProductoDAO.class);
+    private static final Logger logger = Logger.getLogger(ProductoDAO.class.getName());
     
     private static final String INSERT_SQL = "INSERT INTO productos(categoria_id, nombre, descripcion, precio, imagen_url, disponible, personalizable) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_BY_ID_SQL = "SELECT * FROM productos WHERE producto_id = ?";
@@ -40,7 +40,7 @@ public class ProductoDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al insertar producto", e);
+            logger.log(Level.SEVERE, "Error al insertar producto", e);
             return false;
         }
     }
@@ -57,7 +57,7 @@ public class ProductoDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar producto por ID", e);
+            logger.log(Level.SEVERE, "Error al buscar producto por ID", e);
         }
         return producto;
     }
@@ -72,7 +72,7 @@ public class ProductoDAO {
                 productos.add(mapResultSetToProducto(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener todos los productos", e);
+            logger.log(Level.SEVERE, "Error al obtener todos los productos", e);
         }
         return productos;
     }
@@ -92,7 +92,7 @@ public class ProductoDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al actualizar producto", e);
+            logger.log(Level.SEVERE, "Error al actualizar producto", e);
             return false;
         }
     }
@@ -104,7 +104,7 @@ public class ProductoDAO {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al eliminar producto", e);
+            logger.log(Level.SEVERE, "Error al eliminar producto", e);
             return false;
         }
     }
@@ -121,7 +121,7 @@ public class ProductoDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar productos por categoría", e);
+            logger.log(Level.SEVERE, "Error al buscar productos por categoría", e);
         }
         return productos;
     }

@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReporteDAO {
-    private static final Logger logger = LogManager.getLogger(ReporteDAO.class);
+    private static final Logger logger = Logger.getLogger(ReporteDAO.class.getName());
     
     private static final String VENTAS_POR_PERIODO_SQL = 
         "SELECT DATE(fecha_pedido) as fecha, SUM(total) as total " +
@@ -61,7 +61,7 @@ public class ReporteDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener ventas por periodo", e);
+            logger.log(Level.SEVERE, "Error al obtener ventas por periodo", e);
         }
         
         return ventas;
@@ -86,7 +86,7 @@ public class ReporteDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener productos más vendidos", e);
+            logger.log(Level.SEVERE, "Error al obtener productos más vendidos", e);
         }
         
         return productos;
@@ -107,7 +107,7 @@ public class ReporteDAO {
                 inventarioBajo.add(item);
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener inventario bajo", e);
+            logger.log(Level.SEVERE, "Error al obtener inventario bajo", e);
         }
         
         return inventarioBajo;

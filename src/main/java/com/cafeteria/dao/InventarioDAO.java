@@ -13,11 +13,11 @@ import com.cafeteria.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InventarioDAO {
-    private static final Logger logger = LogManager.getLogger(InventarioDAO.class);
+    private static final Logger logger = Logger.getLogger(InventarioDAO.class.getName());
     
     private static final String INSERT_SQL = "INSERT INTO inventario(producto_id, cantidad_disponible, cantidad_minima) VALUES (?, ?, ?)";
     private static final String SELECT_BY_ID_SQL = "SELECT * FROM inventario WHERE item_id = ?";
@@ -38,7 +38,7 @@ public class InventarioDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al insertar item de inventario", e);
+            logger.log(Level.SEVERE, "Error al insertar item de inventario", e);
             return false;
         }
     }
@@ -55,7 +55,7 @@ public class InventarioDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar item de inventario por ID", e);
+            logger.log(Level.SEVERE, "Error al buscar item de inventario por ID", e);
         }
         return inventario;
     }
@@ -70,7 +70,7 @@ public class InventarioDAO {
                 inventarios.add(mapResultSetToInventario(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener todos los items de inventario", e);
+            logger.log(Level.SEVERE, "Error al obtener todos los items de inventario", e);
         }
         return inventarios;
     }
@@ -85,7 +85,7 @@ public class InventarioDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al actualizar item de inventario", e);
+            logger.log(Level.SEVERE, "Error al actualizar item de inventario", e);
             return false;
         }
     }
@@ -97,7 +97,7 @@ public class InventarioDAO {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al eliminar item de inventario", e);
+            logger.log(Level.SEVERE, "Error al eliminar item de inventario", e);
             return false;
         }
     }
@@ -114,7 +114,7 @@ public class InventarioDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error al buscar inventario por producto", e);
+            logger.log(Level.SEVERE, "Error al buscar inventario por producto", e);
         }
         return inventario;
     }
@@ -129,7 +129,7 @@ public class InventarioDAO {
                 inventarios.add(mapResultSetToInventario(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("Error al obtener inventario con stock bajo", e);
+            logger.log(Level.SEVERE, "Error al obtener inventario con stock bajo", e);
         }
         return inventarios;
     }
@@ -143,7 +143,7 @@ public class InventarioDAO {
             
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error al actualizar cantidad en inventario", e);
+            logger.log(Level.SEVERE, "Error al actualizar cantidad en inventario", e);
             return false;
         }
     }
